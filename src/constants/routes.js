@@ -14,6 +14,8 @@ export const ROUTE_NAMES = {
   // RUTAS PÚBLICAS
   // ==================================
 
+  PRINCIPAL: 'principal',
+
   // Página principal
   HOME: 'home',
 

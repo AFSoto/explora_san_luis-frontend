@@ -1,13 +1,46 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-
-</script>
-
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <h1 class="text-4xl font-bold text-lime-500">Explora San Luis</h1>
-  </div>
+
+  <!-- ======================================
+       CONTENEDOR PRINCIPAL DE RUTAS
+  ======================================= -->
+  <!--
+    router-view renderiza automáticamente
+    el componente correspondiente
+    a la ruta actual.
+  -->
+  <router-view />
 </template>
 
-<style scoped>
-</style>
+<script setup>
+
+// ======================================
+// IMPORTACIONES
+// ======================================
+
+// Hook del ciclo de vida de Vue
+import { onMounted } from 'vue'
+
+// Store de autenticación
+import { useAuthStore } from '@/stores/auth.store'
+
+// ======================================
+// STORE AUTH
+// ======================================
+
+// Instancia del store de autenticación
+const authStore = useAuthStore()
+
+// ======================================
+// CICLO DE VIDA
+// ======================================
+
+// Cuando App.vue se monta:
+// - Verifica si existe una sesión activa
+// - Intenta obtener el usuario autenticado
+// - Mantiene la sesión al recargar la página
+//
+onMounted(() => {
+  authStore.checkAuth()
+})
+
+</script>
