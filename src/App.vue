@@ -8,6 +8,7 @@
     a la ruta actual.
   -->
   <router-view />
+  <LoginModal />
 </template>
 
 <script setup>
@@ -22,6 +23,8 @@ import { onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth.store'
 
 import { useCatalogoStore } from '@/stores/catalogo.store'
+
+import LoginModal from '@/modules/auth/components/LoginModal.vue'
 
 // ======================================
 // STORE AUTH

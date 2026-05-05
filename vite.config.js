@@ -37,6 +37,9 @@ export default defineConfig({
   // Configuración del servidor de desarrollo
   server: {
 
+    // Permite acceder desde otros dispositivos en la red
+  host: '0.0.0.0',
+
     // Puerto donde correrá el frontend
     port: 5173,
 
