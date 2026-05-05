@@ -1,5 +1,4 @@
 <template>
-
   <!-- ======================================
        CONTENEDOR PRINCIPAL DE RUTAS
   ======================================= -->
@@ -12,7 +11,6 @@
 </template>
 
 <script setup>
-
 // ======================================
 // IMPORTACIONES
 // ======================================
@@ -23,12 +21,16 @@ import { onMounted } from 'vue'
 // Store de autenticación
 import { useAuthStore } from '@/stores/auth.store'
 
+import { useCatalogoStore } from '@/stores/catalogo.store'
+
 // ======================================
 // STORE AUTH
 // ======================================
 
 // Instancia del store de autenticación
 const authStore = useAuthStore()
+
+const catalogoStore = useCatalogoStore()
 
 // ======================================
 // CICLO DE VIDA
@@ -41,6 +43,6 @@ const authStore = useAuthStore()
 //
 onMounted(() => {
   authStore.checkAuth()
+  catalogoStore.fetchTipos()
 })
-
 </script>

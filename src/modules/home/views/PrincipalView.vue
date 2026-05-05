@@ -87,28 +87,23 @@
               loading="lazy"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            
+            <div class="absolute top-4 left-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/95 backdrop-blur-sm text-emerald-800 text-sm font-semibold shadow-sm">
+              0{{ index + 1 }}
+            </div>
             <div
               class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
           </div>
           <div class="p-7">
             <div class="w-10 h-0.5 bg-lime-400 mb-4 group-hover:w-16 transition-all duration-300" />
-            <h3 class="text-xl font-semibold text-stone-900 tracking-tight mb-2">
-              {{ site.title }}
-            </h3>
+            <h3 class="text-xl font-semibold text-stone-900 tracking-tight mb-2">{{ site.title }}</h3>
             <p class="text-sm text-stone-600 leading-relaxed">{{ site.description }}</p>
             <span
               class="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-emerald-700 group-hover:gap-2.5 transition-all duration-300"
             >
               Explorar lugar
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </span>
           </div>
@@ -340,10 +335,10 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { ROUTE_NAMES } from '@/constants/routes'
-import heroBg from '@/assets/images/home/cascada2.webp'
-import plantaImg from '@/assets/images/home/planta.webp'
-import cerroImg from '@/assets/images/home/cerro_castellon.webp'
-import rioImg from '@/assets/images/home/rio_samana.webp'
+import heroBg    from '@/assets/images/principal/cascada2.webp'
+import plantaImg from '@/assets/images/principal/planta.webp'
+import cerroImg  from '@/assets/images/principal/cerro_castellon.webp'
+import rioImg    from '@/assets/images/principal/rio_samana.webp'
 
 const sitesRef = ref(null)
 
@@ -368,17 +363,9 @@ function initScrollReveal() {
 onMounted(initScrollReveal)
 
 const featuredSites = [
-  {
-    title: 'Cascada La Planta',
-    description: 'Considerado el charco natural más grande del Oriente antioqueño.',
-    image: plantaImg,
-  },
-  {
-    title: 'Cerro El Castellón',
-    description: 'Un lugar lleno de historia y paisajes que enamoran.',
-    image: cerroImg,
-  },
-  { title: 'Río Samaná', description: 'El único río libre de Antioquia.', image: rioImg },
+  { title: 'Cascada La Planta',  description: 'Considerado el charco natural más grande del Oriente antioqueño.', image: plantaImg },
+  { title: 'Cerro El Castellón', description: 'Un lugar lleno de historia y paisajes que enamoran.',               image: cerroImg  },
+  { title: 'Río Samaná',         description: 'El único río libre de Antioquia.',                                   image: rioImg    },
 ]
 
 const testimonials = [
