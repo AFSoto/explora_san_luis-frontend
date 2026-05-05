@@ -151,12 +151,12 @@
           <!-- Usuario NO autenticado -->
           <template v-else>
             <!-- Login -->
-            <router-link
-              :to="{ name: ROUTE_NAMES.LOGIN }"
+            <button
+              @click="uiStore.openLogin()"
               class="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-green-600 transition-colors"
             >
               Iniciar sesión
-            </router-link>
+            </button>
 
             <!-- Registro -->
             <router-link
@@ -207,8 +207,91 @@
            MENÚ MOBILE
       =================================== -->
       <div v-if="showMobileMenu" class="lg:hidden border-t border-gray-100 py-4 space-y-1">
-        <!-- Aquí van los links mobile -->
-        <!-- La lógica es igual al menú desktop -->
+        <router-link
+          :to="{ name: ROUTE_NAMES.HOME }"
+          class="block px-3 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
+          @click="showMobileMenu = false"
+        >
+          Inicio
+        </router-link>
+
+        <router-link
+          :to="{ name: ROUTE_NAMES.SITIOS_TURISTICOS }"
+          class="block px-3 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
+          @click="showMobileMenu = false"
+        >
+          Sitios turísticos
+        </router-link>
+
+        <router-link
+          :to="{ name: ROUTE_NAMES.EVENTOS }"
+          class="block px-3 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
+          @click="showMobileMenu = false"
+        >
+          Eventos
+        </router-link>
+
+        <!-- Categorías -->
+        <div class="px-3 py-2">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Categorías</p>
+          <div class="space-y-1 pl-2">
+            <router-link
+              v-for="item in categoryLinks"
+              :key="item.route"
+              :to="{ name: item.route }"
+              class="block py-2 text-sm text-gray-600 hover:text-green-600"
+              @click="showMobileMenu = false"
+            >
+              {{ item.label }}
+            </router-link>
+          </div>
+        </div>
+
+        <router-link
+          :to="{ name: ROUTE_NAMES.HISTORIA }"
+          class="block px-3 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
+          @click="showMobileMenu = false"
+        >
+          Historia
+        </router-link>
+
+        <!-- Zona usuario mobile -->
+        <div class="border-t border-gray-100 pt-3 mt-3 px-3">
+          <template v-if="authStore.isAuthenticated">
+            <p class="text-sm text-gray-500 mb-2">Hola, {{ firstName }}</p>
+            <router-link
+              v-if="authStore.isAdmin"
+              :to="{ name: ROUTE_NAMES.ADMIN_DASHBOARD }"
+              class="block py-2 text-sm font-semibold text-green-600"
+              @click="showMobileMenu = false"
+            >
+              Panel Admin
+            </router-link>
+            <button @click="handleLogout" class="text-sm text-red-500 font-medium">
+              Cerrar sesión
+            </button>
+          </template>
+          <template v-else>
+            <div class="flex flex-col gap-2">
+              <button
+                @click="
+                  uiStore.openLogin();
+                  showMobileMenu = false
+                "
+                class="w-full text-center py-2.5 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg"
+              >
+                Iniciar sesión
+              </button>
+              <router-link
+                :to="{ name: ROUTE_NAMES.REGISTER }"
+                class="text-center py-2.5 bg-lime-400 text-gray-900 text-sm font-bold rounded-lg"
+                @click="showMobileMenu = false"
+              >
+                Crear cuenta
+              </router-link>
+            </div>
+          </template>
+        </div>
       </div>
     </nav>
   </header>
@@ -227,6 +310,7 @@ import { useRouter } from 'vue-router'
 
 // Store de autenticación
 import { useAuthStore } from '@/stores/auth.store'
+import { useUiStore } from '@/stores/ui.store'
 
 // Nombres centralizados de rutas
 import { ROUTE_NAMES } from '@/constants/routes'
@@ -243,6 +327,8 @@ const router = useRouter()
 
 // Instancia del store auth
 const authStore = useAuthStore()
+
+const uiStore = useUiStore()
 
 // ======================================
 // ESTADO REACTIVO

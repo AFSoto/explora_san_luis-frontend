@@ -90,6 +90,11 @@ const router = createRouter({
           component: () =>
             import('@/modules/auth/views/VerificarCodigoView.vue'),
         },
+        {
+          path: 'auth/google/callback',
+          name: 'google-callback',
+          component: () => import('@/modules/auth/views/GoogleCallbackView.vue'),
+        },
 
         // ==================================
         // CATÁLOGO PÚBLICO
