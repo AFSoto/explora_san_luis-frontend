@@ -4,7 +4,6 @@
 // Contiene todas las rutas relacionadas
 // con login, registro y autenticación
 export const AUTH = {
-
   // Iniciar sesión
   LOGIN: '/auth/login',
 
@@ -35,7 +34,6 @@ export const AUTH = {
 // ======================================
 // Rutas accesibles sin autenticación
 export const PUBLIC = {
-
   // Obtener tipos de entidades
   TIPOS: '/tipos',
 
@@ -55,7 +53,6 @@ export const PUBLIC = {
 // ======================================
 // Rutas protegidas para administradores
 export const ADMIN = {
-
   // Estadísticas del dashboard
   DASHBOARD_STATS: '/admin/dashboard/stats',
 

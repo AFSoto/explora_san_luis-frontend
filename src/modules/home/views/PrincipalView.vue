@@ -37,7 +37,7 @@
 
           <div class="hero-item flex flex-wrap gap-4" style="--i: 3">
             <router-link
-              :to="{ name: ROUTE_NAMES.SITIOS_TURISTICOS }"
+              :to="{ name: ROUTE_NAMES.HOME }"
               class="group inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white text-base font-semibold px-8 py-4 rounded-full ring-1 ring-white/20 shadow-lg shadow-emerald-900/30 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-900/40 hover:-translate-y-0.5"
             >
               Comienza tu Aventura
