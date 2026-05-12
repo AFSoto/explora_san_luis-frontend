@@ -7,6 +7,14 @@ import { ref } from 'vue'
 // Define el store llamado "ui"
 export const useUiStore = defineStore('ui', () => {
 
+  // ── Sidebar Admin
+  const sidebarOpen = ref(localStorage.getItem('sidebar_open') !== 'false')
+
+  function toggleSidebar() {
+    sidebarOpen.value = !sidebarOpen.value
+    localStorage.setItem('sidebar_open', sidebarOpen.value)
+  }
+
   // Estado reactivo que controla si el modal de login está visible
   const showLoginModal = ref(false)
 
@@ -26,5 +34,7 @@ export const useUiStore = defineStore('ui', () => {
     showLoginModal,
     openLogin,
     closeLogin,
+    sidebarOpen,
+    toggleSidebar,
   }
 })

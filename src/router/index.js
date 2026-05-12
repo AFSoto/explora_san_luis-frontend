@@ -2,6 +2,8 @@
 // IMPORTACIONES
 // ======================================
 
+import { useAuthStore } from '@/stores/auth.store'
+
 // Funciones principales de Vue Router
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -241,6 +243,28 @@ const router = createRouter({
       ],
     },
   ],
+})
+
+// Guards de navegación
+router.beforeEach(async (to) => {
+  const authStore = useAuthStore()
+
+  if (to.meta.requiresAuth || to.meta.requiresAdmin) {
+    // Si no hay usuario cargado, intentar verificar
+    if (!authStore.user && authStore.token) {
+      await authStore.checkAuth()
+    }
+
+    // Si sigue sin autenticarse
+    if (!authStore.isAuthenticated) {
+      return { name: ROUTE_NAMES.PRINCIPAL }
+    }
+
+    // Si requiere admin y no lo es
+    if (to.meta.requiresAdmin && !authStore.isAdmin) {
+      return { name: ROUTE_NAMES.HOME }
+    }
+  }
 })
 
 // ======================================
